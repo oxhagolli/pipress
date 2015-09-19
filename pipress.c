@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+int get_byte(int id);
+
 /**
 	Taken from programming simplified examples.
 */
@@ -32,7 +34,7 @@ int cmpstr(char *first, char *second) {
 	returns the nth digit of pi. 
 */
 int pidig(int n) {
-	return (int)'1';
+	return get_byte(n);
 }
 
 /**
@@ -74,8 +76,15 @@ int pipointer(char * str) {
 	int n = 0; //Nth digit
 	while ( 1 ) { //if not fully implemented might run forever
 		bool hypothesis = true;
-		for (int i = 0; i < strlen(str); i++) {
-			if (str[i] != pidig(i + n)) {
+		char *curr = str;
+		int i = n;
+		while (*curr != '\0'){
+			if (*curr == pidig(i)) {
+				hypothesis = true;
+				curr++;
+				i++;
+			}
+			else {
 				hypothesis = false;
 				break;
 			}

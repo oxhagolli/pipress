@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+int get_byte(int id);
+
 /**
 	Taken from programming simplified examples.
 */
@@ -32,10 +34,14 @@ int cmpstr(char *first, char *second) {
 	returns the nth digit of pi. 
 */
 int pidig(int n) {
+<<<<<<< HEAD
 	if(n = 1)
 	return (int)'2';
 	if (n = 2)
 		return (int)'1';
+=======
+	return get_byte(n);
+>>>>>>> ac25839b277ee3105a1d12cfc1d833d47c26f507
 }
 
 /**
@@ -91,23 +97,57 @@ int readfile(char* filename, bool hex, int chunksize) {
 
 int pipointer(char * str) {
 	int n = 0; //Nth digit
-	while ( 1 ) { //if not fully implemented might run forever
-		bool hypothesis = true;
-		for (int i = 0; i < strlen(str); i++) {
-			if (str[i] != pidig(i + n)) {
-				hypothesis = false;
+
+	bool sliceFound = false;
+	while (!(sliceFound)){
+		char *curr = str;
+		int m = n;
+		while(*curr != '\0'){
+			if(*curr == pidig(m)){
+				curr++;
+				m++;
+				sliceFound = true;
+			}
+			else{
+				n++;
+				sliceFound = false;
 				break;
 			}
 		}
-		if (hypothesis) {
-			break;
+		if(sliceFound){
+			return n;
 		}
-		n++;
 	}
-	return n;
 }
 
 int main(void){
+<<<<<<< HEAD
 	printf("%i", pipointer("21"));
+=======
+	int max = 50;
+	char inp[max];
+	int c;
+	char *str;
+	char *strptr = str;
+	printf( "Enter a value : ");
+	c = getchar();
+	inp[0] = c;
+	int x = 1;
+	while ((c != '\0')||(c != '\n')||(c != EOF)){
+		c = getchar();
+		inp[x] = c;
+		x++;
+	}	
+	
+	int a = 0;
+	while(inp[a] != '\0'){
+		*strptr = a;
+		a++;
+	}
+
+	printf("%s\n", str);
+	int y = pipointer(str);
+	printf("The value's Nth spot in hex-pi is %i", y);
+>>>>>>> ac25839b277ee3105a1d12cfc1d833d47c26f507
 	return 0;
 }

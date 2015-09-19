@@ -32,7 +32,10 @@ int cmpstr(char *first, char *second) {
 	returns the nth digit of pi. 
 */
 int pidig(int n) {
-	return (int)'1';
+	if(n = 1)
+	return (int)'2';
+	if (n = 2)
+		return (int)'1';
 }
 
 /**
@@ -52,17 +55,33 @@ int readfile(char* filename, bool hex, int chunksize) {
 	printf("Printing the contents of %s:\n", filename);
 	
 	char c;
+	char * str, * stream;
 	int count = 0;
 	while ((c = fgetc(fpointer))!= EOF) {
 		count++;
 		if (hex) {
 			//TODO: Here's the data.
-			printf("%0x", (int)c);
+			char *buf;
+			size_t sz;
+			sz = snprintf(NULL, 0, "%0x", (int)c);
+			buf = (char *)malloc(sz + 1); /* make sure you check for != NULL in real code */
+			snprintf(buf, sz + 1, "%0x", (int)c);
+			stream = str;
+			while (*str != '\0') {
+				str++;
+			}
+			while (*buf != '\0') {
+				str = buf;
+				str++;
+				buf++;
+			}
+			str = stream;
+			printf("%s\n", stream);
 		}
 		else {
 			printf("%c", c);
 		}
-		if (count > 3) {
+		if (count > chunksize-1) {
 			printf("\n%i\n", count);
 			count = 0;
 		}
@@ -89,6 +108,6 @@ int pipointer(char * str) {
 }
 
 int main(void){
-	printf("%i", pipointer("1"));
+	printf("%i", pipointer("21"));
 	return 0;
 }

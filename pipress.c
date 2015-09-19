@@ -74,30 +74,53 @@ int readfile(char* filename, bool hex, int chunksize) {
 
 int pipointer(char * str) {
 	int n = 0; //Nth digit
-	while ( 1 ) { //if not fully implemented might run forever
-		bool hypothesis = true;
+
+	bool sliceFound = false;
+	while (!(sliceFound)){
 		char *curr = str;
-		int i = n;
-		while (*curr != '\0'){
-			if (*curr == pidig(i)) {
-				hypothesis = true;
+		int m = n;
+		while(*curr != '\0'){
+			if(*curr == pidig(m)){
 				curr++;
-				i++;
+				m++;
+				sliceFound = true;
 			}
-			else {
-				hypothesis = false;
+			else{
+				n++;
+				sliceFound = false;
 				break;
 			}
 		}
-		if (hypothesis) {
-			break;
+		if(sliceFound){
+			return n;
 		}
-		n++;
 	}
-	return n;
 }
 
 int main(void){
-	printf("%i", pipointer("1"));
+	int max = 50;
+	char inp[max];
+	int c;
+	char *str;
+	char *strptr = str;
+	printf( "Enter a value : ");
+	c = getchar();
+	inp[0] = c;
+	int x = 1;
+	while ((c != '\0')||(c != '\n')||(c != EOF)){
+		c = getchar();
+		inp[x] = c;
+		x++;
+	}	
+	
+	int a = 0;
+	while(inp[a] != '\0'){
+		*strptr = a;
+		a++;
+	}
+
+	printf("%s\n", str);
+	int y = pipointer(str);
+	printf("The value's Nth spot in hex-pi is %i", y);
 	return 0;
 }

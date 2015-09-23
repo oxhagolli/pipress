@@ -1,7 +1,7 @@
 from bbp import *
 import time
 
-def readfile(filename, size=8):
+def readfile(filename, size=2):
     counter = 0
     rlist = []
     outlist = []
@@ -21,7 +21,7 @@ def pindex(number):
     number = number.upper()
     for line in open("pihex.txt"):
         if number in line:
-            return True
+            return line.index(number)
         else:
-            return False
+            return -1
                     

@@ -31,17 +31,15 @@ int cmpstr(char *first, char *second) {
 }
 
 /*
-	returns the nth digit of pi. 
+	returns the nth digit of pi.
 */
 int pidig(int n) {
-<<<<<<< HEAD
 	if(n = 1)
 	return (int)'2';
 	if (n = 2)
 		return (int)'1';
-=======
+
 	return get_byte(n);
->>>>>>> ac25839b277ee3105a1d12cfc1d833d47c26f507
 }
 
 /**
@@ -57,9 +55,9 @@ int readfile(char* filename, bool hex, int chunksize) {
 		printf("Something went wrong. Microsoft style.\n");
 		exit(EXIT_FAILURE);
 	}
-	
+
 	printf("Printing the contents of %s:\n", filename);
-	
+
 	char c;
 	char * str, * stream;
 	int count = 0;
@@ -121,9 +119,8 @@ int pipointer(char * str) {
 }
 
 int main(void){
-<<<<<<< HEAD
 	printf("%i", pipointer("21"));
-=======
+
 	int max = 50;
 	char inp[max];
 	int c;
@@ -137,8 +134,8 @@ int main(void){
 		c = getchar();
 		inp[x] = c;
 		x++;
-	}	
-	
+	}
+
 	int a = 0;
 	while(inp[a] != '\0'){
 		*strptr = a;
@@ -148,6 +145,6 @@ int main(void){
 	printf("%s\n", str);
 	int y = pipointer(str);
 	printf("The value's Nth spot in hex-pi is %i", y);
->>>>>>> ac25839b277ee3105a1d12cfc1d833d47c26f507
+
 	return 0;
 }
